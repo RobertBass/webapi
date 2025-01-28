@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Expressions;
 
 namespace webapi.Controllers;
 
@@ -38,6 +39,7 @@ public class WeatherForecastController : ControllerBase
     [Route("[action]")]
     public IEnumerable<WeatherForecast> Get()
     {
+        _logger.LogInformation("Getting Weather Forecast");
         return ListWeatherForecast;
     }
 
@@ -47,7 +49,7 @@ public class WeatherForecastController : ControllerBase
     public IActionResult Post(WeatherForecast weatherForecast)
     {
         ListWeatherForecast.Add(weatherForecast);
-        return Ok();
+        return Ok(weatherForecast);
     }
 
 
