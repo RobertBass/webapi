@@ -1,3 +1,6 @@
+using webapi;
+using webapi.Services;
+using webapi.config;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,7 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddNpgsql<TaskContext>(DBConnection.GetConnectionInfo());
 builder.Services.AddScoped<IWelcomeService, WelcomeService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 var app = builder.Build();
 

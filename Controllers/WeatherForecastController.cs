@@ -35,8 +35,7 @@ public class WeatherForecastController : ControllerBase
 
     [HttpGet(Name = "GetWeatherForecast")]
     [Route("Get/weatherforecast")]
-    [Route("Get/weatherforecast2")]
-    [Route("[action]")]
+    [Route("weatherforecast")]
     public IEnumerable<WeatherForecast> Get()
     {
         _logger.LogInformation("Getting Weather Forecast");
@@ -45,7 +44,8 @@ public class WeatherForecastController : ControllerBase
 
     
     [HttpPost]
-    [Route("Post/weatherforecast")]
+    [Route("Post/weatherforecasts")]
+    [Route("weatherforecast")]
     public IActionResult Post(WeatherForecast weatherForecast)
     {
         ListWeatherForecast.Add(weatherForecast);
@@ -55,6 +55,7 @@ public class WeatherForecastController : ControllerBase
 
     [HttpDelete("{index}")]
     [Route("Delete/weatherforecast/{index}")]
+    [Route("weatherforecast/{index}")]
     //[Route("Delete/weatherforecast")]
     public IActionResult Delete(int index)
     {
